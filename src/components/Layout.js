@@ -34,7 +34,7 @@ const Layout = (props) => {
       <Divider />
       <List>
         {['Home', 'Coins', 'News'].map((text, index) => (
-          <Link key={text} to={text.toLowerCase()}>
+          <Link key={text} to={text.toLowerCase()} onClick={handleDrawerToggle}>
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>

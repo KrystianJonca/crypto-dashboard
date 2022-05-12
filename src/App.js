@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import Layout from './components/Layout';
+import Home from './routes/Home';
+import Coins from './routes/Coins';
+import News from './routes/News';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-function App() {
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
+const App = () => {
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (pathname === '/') navigate('/home');
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ThemeProvider theme={darkTheme}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/coins" element={<Coins />} />
+            <Route path="/news" element={<News />} />
+          </Route>
+        </Routes>
+      </ThemeProvider>
+    </>
   );
-}
+};
 
 export default App;

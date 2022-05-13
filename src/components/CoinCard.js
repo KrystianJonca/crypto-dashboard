@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import millify from 'millify';
 import {
   Card,
   CardContent,
@@ -9,21 +10,31 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const CoinCard = ({ id, name, symbol, icon }) => {
+const CoinCard = ({ id, name, symbol, icon, price, marketCap }) => {
   return (
     <Link to={`/crypto/${id}`}>
-      <Card sx={{ width: 250, height: 250, m: 2 }}>
+      <Card sx={{ width: 300, height: 300, m: 2 }}>
         <CardActionArea>
           <CardMedia
             component="img"
-            height="145"
+            height="150"
             width="100"
             image={icon}
             alt={name}
           />
           <CardContent>
-            <Typography sx={{ height: 105 }} variant="h5" component="div">
+            <Typography sx={{ height: 150 }} variant="h5" component="div">
               {symbol} - {name}
+              {price && (
+                <Typography variant="body2" color="text.secondary">
+                  Price: {`$${millify(price)}`}
+                </Typography>
+              )}
+              {price && (
+                <Typography variant="body2" color="text.secondary">
+                  Market cap: {`$${millify(marketCap)}`}
+                </Typography>
+              )}
             </Typography>
           </CardContent>
         </CardActionArea>

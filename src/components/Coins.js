@@ -15,10 +15,13 @@ const Coins = ({ coins }) => {
     >
       {coins.map((coin) => (
         <CoinCard
+          key={coin.uuid}
           id={coin.uuid}
           name={coin.name}
           symbol={coin.symbol}
           icon={coin.iconUrl}
+          price={coin.price ? coin.price : undefined}
+          marketCap={coin.marketCap ? coin.marketCap : undefined}
         />
       ))}
     </Box>

@@ -16,16 +16,25 @@ import {
   Typography,
 } from '@mui/material/';
 import { Home, Article, CurrencyBitcoin, Menu } from '@mui/icons-material';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { Outlet, Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleColorMode } from '../features/colorSlice';
 
 const drawerWidth = 240;
 
 const Layout = (props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const colorMode = useSelector((state) => state.colorMode.value);
+  const dispatch = useDispatch();
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+  const handleColorModeToggle = () => {
+    dispatch(toggleColorMode());
   };
 
   const drawer = (
@@ -77,6 +86,13 @@ const Layout = (props) => {
           <Typography variant="h6" noWrap component="div">
             Crypto Dashboard
           </Typography>
+          <IconButton
+            sx={{ ml: 1 }}
+            onClick={handleColorModeToggle}
+            color="inherit"
+          >
+            {colorMode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Box

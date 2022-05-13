@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import Layout from './components/Layout';
 import Home from './routes/Home';
 import Coins from './routes/Coins';
+import Coin from './routes/Coin';
 import News from './routes/News';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/" element={<Layout />}>
             <Route path="/home" element={<Home />} />
             <Route path="/coins" element={<Coins />} />
+            <Route path="/coin/:id" element={<Coin />} />
             <Route path="/news" element={<News />} />
           </Route>
         </Routes>

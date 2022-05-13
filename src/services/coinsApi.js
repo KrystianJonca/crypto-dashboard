@@ -23,7 +23,7 @@ export const coinsApi = createApi({
         createReq(`/coin/${coinId}/history?timeperiod=${timeperiod}`),
     }),
     getCoins: builder.query({
-      query: (count) => createReq(`/coins?limit=${count}`),
+      query: (count = 100) => createReq(`/coins?limit=${count}`),
     }),
   }),
 });

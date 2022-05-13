@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 const NewsCard = ({ link, name, image }) => {
   return (
-    <Link to={link}>
+    <a href={link}>
       <Card sx={{ width: 300, height: 300, m: 2 }}>
         <CardActionArea>
           <CardMedia
@@ -28,7 +28,7 @@ const NewsCard = ({ link, name, image }) => {
           </CardContent>
         </CardActionArea>
       </Card>
-    </Link>
+    </a>
   );
 };
 

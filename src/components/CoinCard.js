@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 const CoinCard = ({ id, name, symbol, icon, price, marketCap }) => {
   return (
-    <Link to={`/crypto/${id}`}>
+    <Link to={`/coin/${id}`}>
       <Card sx={{ width: 300, height: 300, m: 2 }}>
         <CardActionArea>
           <CardMedia

@@ -8,7 +8,7 @@ import Coins from '../components/Coins';
 
 const Home = () => {
   const { data: globalStats, error, isLoading } = useGetStatsQuery();
-  console.log(globalStats);
+
   if (error) return <Typography variant="h4">{error}</Typography>;
 
   return (

@@ -7,7 +7,6 @@ import {
   Typography,
   CardActionArea,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
 
 const NewsCard = ({ link, name, image }) => {
   return (

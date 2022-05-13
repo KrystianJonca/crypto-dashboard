@@ -16,7 +16,7 @@ export const coinsApi = createApi({
       query: () => createReq('/stats'),
     }),
     getCoin: builder.query({
-      query: (coinId) => createReq(`/coin${coinId}`),
+      query: (coinId) => createReq(`/coin/${coinId}`),
     }),
     getCoinChart: builder.query({
       query: ({ coinId, timeperiod }) =>

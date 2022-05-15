@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Typography } from '@mui/material';
 import Loader from '../Loader';
@@ -93,7 +93,18 @@ const CoinChart = ({ id, timeperiod }) => {
 
   if (error) return <Typography variant="h4">{error}</Typography>;
 
-  return <>{isLoading ? <Loader /> : <Line data={data} options={options} />}</>;
+  return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Typography>Change: {coinChart.data.change}%</Typography>
+          <Line data={data} options={options} />
+        </>
+      )}
+    </>
+  );
 };
 
 CoinChart.propTypes = {

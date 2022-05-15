@@ -20,7 +20,7 @@ export const coinsApi = createApi({
     }),
     getCoinChart: builder.query({
       query: ({ coinId, timeperiod }) =>
-        createReq(`/coin/${coinId}/history?timeperiod=${timeperiod}`),
+        createReq(`/coin/${coinId}/history?timePeriod=${timeperiod}`),
     }),
     getCoins: builder.query({
       query: (count = 100) => createReq(`/coins?limit=${count}`),

@@ -35,8 +35,8 @@ Coins.propTypes = {
       coinrankingUrl: PropTypes.string,
       iconUrl: PropTypes.string,
       name: PropTypes.string,
-      pice: PropTypes.number,
-      marketCap: PropTypes.number,
+      pice: PropTypes.string,
+      marketCap: PropTypes.string,
       symbol: PropTypes.string,
       uuid: PropTypes.string,
     })

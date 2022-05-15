@@ -30,7 +30,7 @@ const CoinCard = ({ id, index, name, symbol, icon, price, marketCap }) => {
                   Price: {`$${millify(price)}`}
                 </Typography>
               )}
-              {price && (
+              {marketCap && (
                 <Typography variant="body2" color="text.secondary">
                   Market cap: {`$${millify(marketCap)}`}
                 </Typography>
@@ -49,7 +49,8 @@ CoinCard.propTypes = {
   name: PropTypes.string.isRequired,
   symbol: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
-  marketCap: PropTypes.number.isRequired,
+  price: PropTypes.string,
+  marketCap: PropTypes.string,
 };
 
 export default React.memo(CoinCard);

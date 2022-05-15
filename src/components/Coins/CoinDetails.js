@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import CoinChart from './CoinChart';
 import millify from 'millify';
 import Statistic from '../Statistic/Statistic';
-import { Box, Typography } from '@mui/material';
 import HTMLReactParser from 'html-react-parser';
+import {
+  Box,
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+} from '@mui/material';
+
+const time = ['3h', '24h', '7d', '30d', '3m', '1y', '3y', '5y'];
 
 const CoinDetails = ({
   id,
@@ -19,6 +28,14 @@ const CoinDetails = ({
   supply,
   ath,
 }) => {
+  const [timeperiod, setTimeperiod] = useState(time[1]);
+
+  const handleTimeperiodChange = (event) => {
+    if (time.includes(event.target.value)) {
+      setTimeperiod(event.target.value);
+    }
+  };
+
   return (
     <Box>
       <img src={icon} alt={name} width="200" height="200" />
@@ -43,7 +60,40 @@ const CoinDetails = ({
         <Statistic title="Total Supply" data={millify(supply)} />
         <Statistic title="All time high" data={`$${millify(ath)}`} />
       </Box>
-      <CoinChart id={id} />
+
+      <Box sx={{ my: 4 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'items-center',
+            flexWrap: 'wrap',
+          }}
+        >
+          <Typography variant="h4" sx={{ my: 1 }}>
+            BTC TO USD
+          </Typography>
+          <FormControl sx={{ width: '125px', my: 1 }}>
+            <InputLabel id="timeperiod-select-label">Timeperiod</InputLabel>
+            <Select
+              labelId="timeperiod-select-label"
+              id="timeperiod-select"
+              value={timeperiod}
+              label="timeperiod"
+              onChange={handleTimeperiodChange}
+            >
+              {time.map((t) => (
+                <MenuItem key={t} value={t}>
+                  {t.toUpperCase()}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+        <CoinChart id={id} timeperiod={timeperiod} />
+      </Box>
+
       <Typography sx={{ mt: 2 }} variant="h4">
         What is {name}?
       </Typography>

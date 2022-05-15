@@ -24,6 +24,7 @@ const Coin = () => {
           id={coin.uuid}
           name={coin.name}
           price={coin.price}
+          change={coin.change}
           symbol={coin.symbol}
           icon={coin.iconUrl}
           desc={coin.description}

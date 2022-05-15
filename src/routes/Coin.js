@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import Loader from '../components/Loader';
+import { Loader } from '../components';
 import { useParams } from 'react-router-dom';
 import { useGetCoinQuery } from '../services/coinsApi';
 

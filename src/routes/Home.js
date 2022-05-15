@@ -2,9 +2,7 @@ import React from 'react';
 import millify from 'millify';
 import { Typography, Box } from '@mui/material';
 import { useGetStatsQuery } from '../services/coinsApi';
-import Statistic from '../components/Statistic';
-import Loader from '../components/Loader';
-import Coins from '../components/Coins';
+import { Statistic, Loader, CoinsList } from '../components';
 
 const Home = () => {
   const { data: globalStats, error, isLoading } = useGetStatsQuery();
@@ -47,11 +45,19 @@ const Home = () => {
       <Typography sx={{ mt: 4 }} variant="h3">
         Top 3 Coins
       </Typography>
-      {isLoading ? <Loader /> : <Coins coins={globalStats.data.bestCoins} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <CoinsList coins={globalStats.data.bestCoins} />
+      )}
       <Typography sx={{ mt: 4 }} variant="h3">
         Newest 3 Coins
       </Typography>
-      {isLoading ? <Loader /> : <Coins coins={globalStats.data.newestCoins} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <CoinsList coins={globalStats.data.newestCoins} />
+      )}
     </>
   );
 };

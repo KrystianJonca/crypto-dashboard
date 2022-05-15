@@ -13,10 +13,11 @@ const Coins = ({ coins }) => {
         flexWrap: 'wrap',
       }}
     >
-      {coins.map((coin) => (
+      {coins.map((coin, i) => (
         <CoinCard
-          key={coin.uuid}
+          key={i}
           id={coin.uuid}
+          index={i + 1}
           name={coin.name}
           symbol={coin.symbol}
           icon={coin.iconUrl}
@@ -34,10 +35,12 @@ Coins.propTypes = {
       coinrankingUrl: PropTypes.string,
       iconUrl: PropTypes.string,
       name: PropTypes.string,
+      pice: PropTypes.number,
+      marketCap: PropTypes.number,
       symbol: PropTypes.string,
       uuid: PropTypes.string,
     })
-  ),
+  ).isRequired,
 };
 
 export default React.memo(Coins);

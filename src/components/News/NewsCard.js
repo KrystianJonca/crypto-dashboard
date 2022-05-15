@@ -32,9 +32,9 @@ const NewsCard = ({ link, name, image }) => {
 };
 
 NewsCard.propTypes = {
-  link: PropTypes.string,
-  name: PropTypes.string,
-  image: PropTypes.string,
+  link: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 export default React.memo(NewsCard);

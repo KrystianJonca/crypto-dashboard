@@ -1,8 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Typography, TextField } from '@mui/material';
 import { useGetCoinsQuery } from '../services/coinsApi';
-import Loader from '../components/Loader';
-import Coins from '../components/Coins';
+import { Loader, CoinsList } from '../components';
 
 const CoinsPage = () => {
   const [search, setSearch] = useState('');
@@ -36,7 +35,7 @@ const CoinsPage = () => {
         value={search}
         onChange={handleChange}
       />
-      {isLoading ? <Loader /> : <Coins coins={displayCoins} />}
+      {isLoading ? <Loader /> : <CoinsList coins={displayCoins} />}
     </>
   );
 };

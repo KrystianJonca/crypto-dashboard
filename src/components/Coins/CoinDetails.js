@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import CoinChart from './CoinChart';
 import millify from 'millify';
@@ -30,11 +30,14 @@ const CoinDetails = ({
 }) => {
   const [timeperiod, setTimeperiod] = useState(time[1]);
 
-  const handleTimeperiodChange = (event) => {
-    if (time.includes(event.target.value)) {
-      setTimeperiod(event.target.value);
-    }
-  };
+  const handleTimeperiodChange = useCallback(
+    (event) => {
+      if (time.includes(event.target.value)) {
+        setTimeperiod(event.target.value);
+      }
+    },
+    [setTimeperiod]
+  );
 
   return (
     <Box>
@@ -103,17 +106,17 @@ const CoinDetails = ({
 };
 
 CoinDetails.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  symbol: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  change: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  desc: PropTypes.string.isRequired,
-  marketCap: PropTypes.string.isRequired,
-  volume: PropTypes.string.isRequired,
-  supply: PropTypes.string.isRequired,
-  ath: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  symbol: PropTypes.string,
+  price: PropTypes.string,
+  change: PropTypes.string,
+  icon: PropTypes.string,
+  desc: PropTypes.string,
+  marketCap: PropTypes.string,
+  volume: PropTypes.string,
+  supply: PropTypes.string,
+  ath: PropTypes.string,
 };
 
 export default React.memo(CoinDetails);

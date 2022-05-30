@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useDeferredValue } from 'react';
 import PropTypes from 'prop-types';
 import { Box } from '@mui/material';
 import CoinCard from './CoinCard';
 
-const Coins = ({ coins }) => {
+const Coins = ({ isPending, coins }) => {
+  const defferedCoins = useDeferredValue(coins);
+
   return (
     <Box
       sx={{
@@ -11,9 +13,10 @@ const Coins = ({ coins }) => {
         flexDirection: 'row',
         alignItems: 'flex-start',
         flexWrap: 'wrap',
+        opacity: isPending ? '0.6' : 1,
       }}
     >
-      {coins.map((coin, i) => (
+      {defferedCoins.map((coin, i) => (
         <CoinCard
           key={i}
           id={coin.uuid}
@@ -30,6 +33,7 @@ const Coins = ({ coins }) => {
 };
 
 Coins.propTypes = {
+  isPending: PropTypes.bool,
   coins: PropTypes.arrayOf(
     PropTypes.shape({
       coinrankingUrl: PropTypes.string,

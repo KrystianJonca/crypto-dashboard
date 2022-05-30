@@ -1,14 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useTransition } from 'react';
 import { Typography, TextField } from '@mui/material';
 import { useGetCoinsQuery } from '../services/coinsApi';
 import { Loader, CoinsList } from '../components';
 
 const CoinsPage = () => {
+  const [isPending, startTransition] = useTransition();
   const [search, setSearch] = useState('');
   const { data: coins, error, isLoading } = useGetCoinsQuery();
 
   const handleChange = (event) => {
-    setSearch(event.target.value);
+    startTransition(() => setSearch(event.target.value));
   };
 
   const displayCoins = useMemo(() => {
@@ -32,10 +33,13 @@ const CoinsPage = () => {
         sx={{ my: 2 }}
         label="Search"
         variant="standard"
-        value={search}
         onChange={handleChange}
       />
-      {isLoading ? <Loader /> : <CoinsList coins={displayCoins} />}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <CoinsList isPending={isPending} coins={displayCoins} />
+      )}
     </>
   );
 };
